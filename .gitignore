@@ -1,1 +1,6 @@
+# Folder
 venv
+migrations
+
+# Cache
+__pycache__
