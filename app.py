@@ -2,11 +2,11 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-app.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def index(): 
     return '<h2>Welcome to OnanPlus web service</h2>'
 
-app.route('/api/v1/product', methods=['GET'])
+@app.route('/api/v1/product', methods=['GET'])
 def products():
     return '<h2>List of product</h2>'
 
