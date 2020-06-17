@@ -4,3 +4,6 @@ migrations
 
 # Cache
 __pycache__
+
+# Others
+.env
