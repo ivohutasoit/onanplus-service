@@ -1,7 +1,16 @@
+import os
+
+from dotenv import load_dotenv
 from flask import Flask, request, jsonify
+
+from application import database, environments
 from controller import *
 
+load_dotenv()
 app = Flask(__name__)
+app.config.from_object(environments[os.getenv('FLASK_ENV')])
+
+database.init_app(app)
 
 @app.route('/', methods=['GET'])
 def index(): 
