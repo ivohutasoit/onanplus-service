@@ -14,7 +14,7 @@ database.init_app(app)
 
 @app.route('/', methods=['GET'])
 def index(): 
-    return jsonify({'name': 'CatatHarga Web Service', 'version': '1.0.0', 'end_point': 'https://opservice.herokuapp.com/api/v1', 'copyright': 2020, 'company': 'Softh Axi Inc.'}), 200
+    return jsonify({'name': 'OnanPlus Web Service', 'version': '1.0.0', 'end_point': 'https://opservice.herokuapp.com/api/v1', 'copyright': 2020, 'company': 'Softh Axi Inc.'}), 200
 
 @app.errorhandler(404)
 def not_found(error):
