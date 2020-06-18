@@ -44,4 +44,3 @@ def create():
         return jsonify({ 'status': 'OK', 'product': product.serialize() }), 201
     except Exception as e:
 	    return jsonify({ 'status': 'ERROR', 'error': str(e) }), 500
-    # return jsonify({ 'status': 'OK', 'product': [] }), 201
