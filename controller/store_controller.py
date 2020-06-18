@@ -2,6 +2,7 @@ import json
 
 from flask import Blueprint, jsonify, request
 
+from application import database
 from model import Store
 
 store_controller = Blueprint('store_controller', __name__)
@@ -10,8 +11,8 @@ store_controller = Blueprint('store_controller', __name__)
 def index():
     try:
         stores = Store.query.order_by(Store.name).all()
-        return jsonify({ 'status': 'OK', 'stores': json.dumps([store.serialize() \
-            for store in stores]) }), 200
+        return jsonify({ 'status': 'OK', 'stores': [store.serialize() \
+            for store in stores] }), 200
     except Exception as e:
         return jsonify({ 'status': 'ERROR', 'error': str(e) }), 500
 
