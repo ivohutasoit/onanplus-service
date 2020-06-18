@@ -1,2 +1,3 @@
+from .price_controller import price_controller
 from .product_controller import product_controller
 from .store_controller import store_controller
