@@ -1,6 +1,7 @@
 import json
 from flask import Blueprint, jsonify, request
 
+from application import database
 from model import Product
 
 product_controller = Blueprint('product_controller', __name__)
@@ -9,8 +10,8 @@ product_controller = Blueprint('product_controller', __name__)
 def index():
     try:
         products = Product.query.order_by(Product.barcode).all()
-        return jsonify({ 'status': 'OK', 'products': json.dumps([product.serialize() \
-            for product in products]) }), 200
+        return jsonify({ 'status': 'OK', 'products': [product.serialize() \
+            for product in products] }), 200
     except Exception as e:
         return jsonify({ 'status': 'ERROR', 'error': str(e) }), 500
     
@@ -22,8 +23,6 @@ def detail(id):
             (Product.barcode==id) | \
                 (Product.name==id)).first()
         if product:
-            prices = {} # sort price normal and promo asc
-            product.set_prices(prices) 
             return jsonify({ 'status': 'OK', 'product': product.serialize() }), 200
 
         return jsonify({ 'status': 'NOT FOUND'}), 404
