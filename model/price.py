@@ -32,7 +32,33 @@ class Price(database.Model):
     def __repr__(self):
         return '<Product Price {}>'.format(self.product)
 
-    def serialize(self):
+    def serialize(self, refer=''):
+        if refer == 'product':
+            return {
+                'id': self.id, 
+                'sku': self.sku,
+                'store': self.store.serialize(),
+                'seller': self.seller,
+                'currency': self.currency,
+                'normal': self.normal,
+                'promo': self.promo,
+                'promo_start': self.promo_start,
+                'promo_end': self.promo_end,
+                'date': self.date
+            }
+        if refer == 'store':
+            return {
+                'id': self.id, 
+                'sku': self.sku,
+                'product': self.product.serialize(),
+                'seller': self.seller,
+                'currency': self.currency,
+                'normal': self.normal,
+                'promo': self.promo,
+                'promo_start': self.promo_start,
+                'promo_end': self.promo_end,
+                'date': self.date
+            }
         return {
             'id': self.id, 
             'sku': self.sku,
