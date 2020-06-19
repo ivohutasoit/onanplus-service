@@ -2,7 +2,7 @@ import json
 from flask import Blueprint, jsonify, request
 
 from application import database
-from model import Product
+from model import Price, Product
 
 product_controller = Blueprint('product_controller', __name__)
 
@@ -26,6 +26,17 @@ def detail(id):
             return jsonify({ 'status': 'OK', 'product': product.serialize() }), 200
 
         return jsonify({ 'status': 'NOT FOUND'}), 404
+    except Exception as e:
+        return jsonify({ 'status': 'ERROR', 'error': str(e) }), 500
+
+@product_controller.route('/price/<id>', methods=['GET'])
+def prices(id):
+    try:
+        prices=Price.query.filter_by(product_id=id).\
+                order_by(Price.date.desc()).all()
+        
+        return jsonify({ 'status': 'OK', 'prices': [price.serialize('product') \
+            for price in prices] }), 200
     except Exception as e:
         return jsonify({ 'status': 'ERROR', 'error': str(e) }), 500
 
