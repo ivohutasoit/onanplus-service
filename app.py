@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify #render_template
 
 from application import database, environments
 from controller import *
@@ -14,6 +14,9 @@ database.init_app(app)
 
 @app.route('/', methods=['GET'])
 def index(): 
+    #raise
+
+    #return render_template('page/home.html')
     return jsonify({'name': 'OnanPlus Web Service', 'version': '1.0.0', 'end_point': 'https://opservice.herokuapp.com/api/v1', 'copyright': 2020, 'company': 'Softh Axi Inc.'}), 200
 
 @app.errorhandler(404)
@@ -25,4 +28,4 @@ app.register_blueprint(product_controller, url_prefix='/api/v1/product')
 app.register_blueprint(store_controller, url_prefix='/api/v1/store')
 
 if __name__ == '__main__':
-    app.run(threaded=True)
+    app.run(threaded=True, host= '0.0.0.0')
