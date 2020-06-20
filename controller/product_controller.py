@@ -29,7 +29,7 @@ def detail(id):
     except Exception as e:
         return jsonify({ 'status': 'ERROR', 'error': str(e) }), 500
 
-@product_controller.route('/price/<id>', methods=['GET'])
+@product_controller.route('/<id>/price', methods=['GET'])
 def prices(id):
     try:
         prices=Price.query.filter_by(product_id=id).\
