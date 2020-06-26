@@ -14,7 +14,7 @@ class Environment(object):
 
 class Production(Environment):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI', 'postgresql://postgres:password@localhost:5432/opdb')
+    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI', 'postgresql://postgres:password@localhost:5432/opdb')
 
 class Staging(Environment):
     DEVELOPMENT = True
@@ -23,8 +23,8 @@ class Staging(Environment):
 class Development(Environment):
     DEVELOPMENT = True
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI', 'postgresql://postgres:password@localhost:5432/opdevdb')
+    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI', 'postgresql://postgres:password@localhost:5432/opdevdb')
 
 class Testing(Environment):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI', 'postgresql://postgres:password@localhost:5432/opuntdb')
+    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI', 'postgresql://postgres:password@localhost:5432/opuntdb')
